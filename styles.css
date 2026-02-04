@@ -870,3 +870,14 @@ body {
 .toggle-guide-btn:active {
     transform: scale(0.95);
 }
+
+@keyframes slideUp {
+    from {
+        bottom: -200px;
+        opacity: 0;
+    }
+    to {
+        bottom: 100px;
+        opacity: 1;
+    }
+}

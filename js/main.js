@@ -214,29 +214,29 @@ function setupEventListeners() {
     const toggleGuideBtn = document.getElementById('toggle-guide-btn');
     const gestureList = document.getElementById('gesture-list');
     const speedControl = document.getElementById('sensitivity-control');
-    
+
     if (toggleGuideBtn && gestureList && speedControl) {
         // Initially: Gesture Guide OPEN, Speed Control HIDDEN
         speedControl.classList.remove('visible');
-        
-        toggleGuideBtn.addEventListener('click', function() {
+
+        toggleGuideBtn.addEventListener('click', function () {
             if (gestureList.style.display === 'none') {
                 // Show gesture list
                 gestureList.style.display = 'flex';
                 this.textContent = '−';
-                
+
                 // Hide speed control
                 speedControl.classList.remove('visible');
-                
+
                 console.log('✅ Gesture Guide OPENED - Speed Control HIDDEN');
             } else {
                 // Hide gesture list
                 gestureList.style.display = 'none';
                 this.textContent = '+';
-                
+
                 // Show speed control
                 speedControl.classList.add('visible');
-                
+
                 console.log('✅ Gesture Guide CLOSED - Speed Control VISIBLE');
             }
         });
@@ -244,7 +244,7 @@ function setupEventListeners() {
 
     // ===== SPEED CONTROL BUTTONS =====
     document.querySelectorAll('.sensitivity-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function () {
             // Remove active from all
             document.querySelectorAll('.sensitivity-btn').forEach(b =>
                 b.classList.remove('active')
@@ -255,7 +255,7 @@ function setupEventListeners() {
 
             // Update gesture controller settings
             if (gestureController) {
-                switch(speed) {
+                switch (speed) {
                     case 'slow':
                         gestureController.GESTURE_HOLD_TIME = 1000;
                         gestureController.GESTURE_COOLDOWN = 700;
@@ -287,11 +287,37 @@ function setupEventListeners() {
     });
 
     // ===== EXPLORE BUTTON =====
+    // ===== EXPLORE BUTTON ===== (around line 278)
     const exploreBtn = document.getElementById('explore-btn');
     if (exploreBtn) {
         exploreBtn.addEventListener('click', () => {
             if (currentLocation) {
+                console.log('🔍 Exploring:', currentLocation.name);
+
+                // First fly to location
                 globe.flyTo(currentLocation.lat, currentLocation.lng, 150);
+
+                // Then zoom to street level after 2 seconds
+                setTimeout(() => {
+                    globe.exploreStreetLevel(currentLocation.lat, currentLocation.lng);
+                }, 2500);
+
+                // Visual feedback
+                const statusEl = document.getElementById('gesture-status');
+                statusEl.textContent = `🔍 Exploring ${currentLocation.name} - Street Level`;
+                statusEl.style.color = '#FFD700';
+
+                // Change button text temporarily
+                exploreBtn.textContent = '⏳ Loading Street View...';
+                exploreBtn.disabled = true;
+
+                setTimeout(() => {
+                    exploreBtn.textContent = '🚀 Explore';
+                    exploreBtn.disabled = false;
+                }, 3000);
+
+            } else {
+                alert('⚠️ Please select a destination first!');
             }
         });
     }
@@ -326,7 +352,7 @@ function setupEventListeners() {
 
     // ===== KEYBOARD SHORTCUTS =====
     document.addEventListener('keypress', (e) => {
-        switch(e.key) {
+        switch (e.key) {
             case 'r':
             case 'R':
                 // Reset view
@@ -407,7 +433,7 @@ function updateDebugInfo(gesture) {
     const debugGesture = document.getElementById('debug-gesture');
     const debugZoom = document.getElementById('debug-zoom');
     const debugRotation = document.getElementById('debug-rotation');
-    
+
     if (debugGesture && globe) {
         debugGesture.textContent = gesture.type;
     }
