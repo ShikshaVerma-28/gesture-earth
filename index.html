@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestureEarth - 3D Globe</title>
+    <meta http-equiv="Permissions-Policy" content="camera=*, microphone=*">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Webcam Video Feed -->
+        <div id="webcam-container">
+            <video id="webcam" autoplay playsinline muted></video>
+            <div class="webcam-overlay">
+                <span class="webcam-label">📷 Camera</span>
+                <canvas id="hand-canvas-mini"></canvas>
+            </div>
+        </div>
+
+        <!-- Both Hands Status -->
+        <div id="hands-status">
+            <div class="hand-box" id="left-hand-box">
+                <div class="hand-icon">🖐️</div>
+                <div class="hand-info">
+                    <span class="hand-name">Left Hand</span>
+                    <span class="hand-state" id="left-state">Not Detected</span>
+                    <span class="hand-gesture" id="left-gesture">-</span>
+                </div>
+            </div>
+            <div class="hand-box" id="right-hand-box">
+                <div class="hand-icon">🤚</div>
+                <div class="hand-info">
+                    <span class="hand-name">Right Hand</span>
+                    <span class="hand-state" id="right-state">Not Detected</span>
+                    <span class="hand-gesture" id="right-gesture">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3D Globe Container -->
+        <div id="globe-container"></div>
+
+        <!-- HUD Overlay -->
+        <div id="hud-overlay">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="logo">🌍 GESTUREEARTH</div>
+                <div class="status">
+                    <span id="gesture-status">👋 Initializing...</span>
+                    <span id="location-info">Earth</span>
+                </div>
+            </div>
+
+            <!-- Gesture Guide -->
+            <!-- Gesture Guide -->
+            <div class="gesture-guide" id="gesture-guide-panel">
+                <div class="panel-header-inline">
+                    <h3>✋ Gestures</h3>
+                    <button class="toggle-guide-btn" id="toggle-guide-btn">−</button>
+                </div>
+                <ul id="gesture-list">
+                    <li>✊ <strong>Fist + Move</strong> → <p>Rotate</p>
+                    </li>
+                    <li>🤏 <strong>Pinch Close</strong> → <p>Zoom In</p>
+                    </li>
+                    <li>🖐️ <strong>Pinch Open</strong> → <p>Zoom Out</p>
+                    </li>
+                    <li>👆 <strong>Point</strong> → <p>Select</p>
+                    </li>
+                    <li>👍 <strong>Thumbs Up</strong> → <p>Fly To</p>
+                    </li>
+                    <li style="border-left-color: #0f0;">🤏🤏 <strong>Both Pinch</strong> → <p>Fast Zoom</p>
+                    </li>
+                    <li style="border-left-color: #0f0;">🖐️🖐️ <strong>Both Open</strong> → <p>Reset</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Destinations -->
+            <div class="destinations-sidebar">
+                <h3>🗺️ Destinations</h3>
+                <div id="destinations-list"></div>
+            </div>
+
+            <!-- Location Panel -->
+            <div id="location-panel" class="hidden">
+                <button class="close-panel-btn" id="close-location-panel"> &#10060;</button>
+                <div class="panel-content">
+                    <img id="loc-image" src="" alt="">
+                    <h2 id="loc-name"></h2>
+                    <p id="loc-description"></p>
+                    <button id="explore-btn">🚀 Explore</button>
+                </div>
+            </div>
+            <!-- Gesture Sensitivity Control -->
+            <div id="sensitivity-control">
+                <label>Gesture Speed:</label>
+                <button class="sensitivity-btn active" data-speed="slow">🐢 Slow</button>
+                <button class="sensitivity-btn" data-speed="normal">🚶 Normal</button>
+                <button class="sensitivity-btn" data-speed="fast">🏃 Fast</button>
+            </div>
+
+
+            <!-- Debug Panel (Optional) -->
+            <div id="debug-panel">
+                <div>FPS: <span id="fps">0</span></div>
+                <div>Zoom: <span id="debug-zoom">0</span></div>
+                <div>Rotation: <span id="debug-rotation">0, 0</span></div>
+                <div>Last Gesture: <span id="debug-gesture">none</span></div>
+            </div>
+
+            <!-- Rotation Indicator -->
+            <div id="rotation-indicator" class="hidden">
+                <div class="rotation-compass">
+                    <div class="compass-arrow" id="compass-arrow"></div>
+                    <span class="compass-label">Rotating</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="loading">
+            <div class="loader"></div>
+            <p>Initializing GestureEarth...</p>
+            <small>Allow camera access when prompted</small>
+        </div>
+
+
+    </div>
+
+    <!-- Three.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+    <!-- MediaPipe Hands CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+    <!-- App Scripts (Plain JS - NO modules) -->
+    <script src="js/locations.js"></script>
+    <script src="js/globe.js"></script>
+    <script src="js/gestures.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
