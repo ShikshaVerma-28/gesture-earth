@@ -1,5 +1,3 @@
-
-
 /* --------------;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;--------------- */
 /* --------------;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;--------------- */
 /* --------------;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;--------------- */
@@ -55,7 +53,7 @@ body {
     border-radius: 15px;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.9);
-    box-shadow: 
+    box-shadow:
         0 0 30px rgba(0, 255, 0, 0.5),
         inset 0 0 20px rgba(0, 255, 0, 0.1);
     z-index: 1000;
@@ -63,11 +61,14 @@ body {
 }
 
 @keyframes border-glow {
-    0%, 100% { 
+
+    0%,
+    100% {
         border-color: rgba(0, 255, 0, 0.7);
         box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
     }
-    50% { 
+
+    50% {
         border-color: rgba(0, 255, 0, 1);
         box-shadow: 0 0 40px rgba(0, 255, 0, 0.8);
     }
@@ -133,7 +134,7 @@ body {
     z-index: 10;
 }
 
-#hud-overlay > * {
+#hud-overlay>* {
     pointer-events: auto;
 }
 
@@ -142,7 +143,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 20px 40px;
-    background: linear-gradient(180deg, rgba(0,20,40,0.8) 0%, transparent 100%);
+    background: linear-gradient(180deg, rgba(0, 20, 40, 0.8) 0%, transparent 100%);
     backdrop-filter: blur(10px);
 }
 
@@ -167,14 +168,15 @@ body {
 /* ===== GESTURE GUIDE - TOP RIGHT CORNER ===== */
 .gesture-guide {
     position: absolute;
-    top: 80px;          /* ← CHANGED from 20px to 80px */
+    top: 80px;
+    /* ← CHANGED from 20px to 80px */
     right: 30px;
     background: rgba(0, 20, 40, 0.9);
     border: 2px solid rgba(0, 255, 255, 0.6);
     border-radius: 15px;
     padding: 15px;
     backdrop-filter: blur(15px);
-    box-shadow: 
+    box-shadow:
         0 0 30px rgba(0, 255, 255, 0.4),
         inset 0 0 20px rgba(0, 255, 255, 0.1);
     max-width: 350px;
@@ -184,11 +186,14 @@ body {
 }
 
 @keyframes pulse-border {
-    0%, 100% { 
+
+    0%,
+    100% {
         border-color: rgba(0, 255, 255, 0.6);
         box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
     }
-    50% { 
+
+    50% {
         border-color: rgba(0, 255, 255, 1);
         box-shadow: 0 0 40px rgba(0, 255, 255, 0.6);
     }
@@ -282,9 +287,12 @@ body {
     z-index: 1001;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     width: 180px;
-    opacity: 0;                    /* ← ADD THIS - Hidden by default */
-    pointer-events: none;          /* ← ADD THIS - Disable clicks when hidden */
-    transition: opacity 0.3s ease; /* ← ADD THIS - Smooth transition */
+    opacity: 0;
+    /* ← ADD THIS - Hidden by default */
+    pointer-events: none;
+    /* ← ADD THIS - Disable clicks when hidden */
+    transition: opacity 0.3s ease;
+    /* ← ADD THIS - Smooth transition */
 }
 
 /* NEW: Show speed control when gesture guide is hidden */
@@ -526,8 +534,15 @@ body {
 }
 
 @keyframes hand-pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 .hand-info {
@@ -699,7 +714,9 @@ body {
 }
 
 @keyframes spin {
-    to { transform: translate(-50%, -50%) rotate(360deg); }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 .globe-animation {
@@ -712,8 +729,15 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.2); }
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
 }
 
 .loading-text {
@@ -748,7 +772,9 @@ body {
 }
 
 @keyframes progress {
-    to { width: 100%; }
+    to {
+        width: 100%;
+    }
 }
 
 /* ===== RESPONSIVE LAYOUT ===== */
@@ -757,7 +783,7 @@ body {
         width: 300px;
         max-width: 300px;
     }
-    
+
     #sensitivity-control {
         width: 160px;
     }
@@ -765,23 +791,26 @@ body {
 
 @media (max-width: 1024px) {
     .gesture-guide {
-        top: 20px;         /* ← Keep at top */
+        top: 20px;
+        /* ← Keep at top */
         right: 20px;
         width: 280px;
     }
-    
+
     #sensitivity-control {
-        top: 50%;          /* ← Keep centered */
+        top: 50%;
+        /* ← Keep centered */
         transform: translateY(-50%);
         right: 20px;
     }
 }
+
 @media (max-width: 768px) {
     #webcam-container {
         width: 200px;
         height: 150px;
     }
-    
+
     .gesture-guide {
         top: 180px;
         left: 50%;
@@ -790,7 +819,7 @@ body {
         width: calc(100% - 40px);
         max-width: 100%;
     }
-    
+
     .destinations-sidebar {
         left: 50%;
         transform: translateX(-50%);
@@ -799,7 +828,7 @@ body {
         bottom: 150px;
         max-height: 180px;
     }
-    
+
     #sensitivity-control {
         top: auto;
         bottom: 80px;
@@ -809,7 +838,7 @@ body {
         flex-direction: row;
         width: auto;
     }
-    
+
     #hands-status {
         flex-direction: row;
         bottom: 10px;
@@ -818,11 +847,11 @@ body {
         transform: translateX(-50%);
         gap: 10px;
     }
-    
+
     .hand-box {
         min-width: 140px;
     }
-    
+
     #location-panel {
         width: calc(100% - 40px);
         min-width: auto;
@@ -876,8 +905,164 @@ body {
         bottom: -200px;
         opacity: 0;
     }
+
     to {
         bottom: 100px;
         opacity: 1;
+    }
+}
+
+/* ===== COMPLETE UPDATED CSS WITH MOBILE-SPECIFIC LAYOUT ===== */
+
+/* ... (Keep all your original base CSS styles above the Media Queries) ... */
+
+/* ===== RESPONSIVE LAYOUT ===== */
+
+/* Tablet / Laptop Tweaks */
+@media (max-width: 1400px) {
+    .gesture-guide {
+        width: 300px;
+    }
+
+    #sensitivity-control {
+        width: 160px;
+    }
+}
+
+/* Mobile Layout Implementation (768px and below) */
+@media (max-width: 768px) {
+    body {
+        overflow: hidden;
+        /* Ensure no accidental scrolling */
+    }
+
+    /* 1. TOP BAR & LOGO */
+    .top-bar {
+        padding: 10px 20px 0 20px;
+        justify-content: flex-start;
+    }
+
+    .logo {
+        font-size: 15px;
+        z-index: 1001;
+    }
+
+    .status {
+        display: none;
+        /* Hide top status text for space */
+    }
+
+    /* 2. WEBCAM - Top Left below Logo */
+    #webcam-container {
+        top: 50px;
+        /* Positioned below logo */
+        left: 18px;
+        transform: none;
+        width: 130px;
+        height: 90px;
+        border-width: 2px;
+    }
+
+    /* 3. SPEED CONTROL - Hidden on Mobile */
+    #sensitivity-control {
+        display: none !important;
+    }
+
+    /* 4. HAND STATUS (Left/Right Boxes) - Hidden on Mobile */
+    #hands-status {
+        display: none !important;
+    }
+
+    /* 5. GESTURE GUIDE - Small Bar at the Bottom */
+    .gesture-guide {
+        top: 35px;
+        bottom: 0;
+        left: 450px;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 15px;
+        padding: 8px 15px;
+        height: auto;
+        transform: none;
+        animation: none;
+        border-right: none;
+        border-left: none;
+        border-bottom: none;
+    }
+
+    .gesture-guide h3 {
+        font-size: 18px;
+        margin-bottom: 0px;
+        text-align: left;
+    }
+
+    .gesture-guide ul {
+        flex-direction: column;
+        /* Horizontal layout */
+        overflow-x: auto;
+        /* Scrollable if many gestures */
+        gap: 8px;
+        padding-bottom: 5px;
+    }
+
+    .gesture-guide li {
+        flex: 0 0 auto;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-left: 2px solid #0ff;
+    }
+
+    .gesture-guide li p {
+        display: none;
+        /* Hide descriptions to keep bar small */
+    }
+
+    /* 6. DESTINATIONS SIDEBAR - Adjusted for Top Left alignment */
+    .destinations-sidebar {
+        left: 605px;
+        top: 33px;
+        /* Below the webcam */
+        width: 10p8x;
+        max-height: 40vh;
+        padding: 10px;
+    }
+
+    .destination-item {
+        padding: 8px;
+    }
+
+    .destination-item h4 {
+        font-size: 13px;
+    }
+
+    /* 7. LOCATION PANEL - Bottom Center (Above Gesture Bar) */
+    #location-panel {
+        width: calc(100% - 20px);
+        min-width: auto;
+        bottom: 80px;
+        /* Sits above the gesture bar */
+        padding: 15px;
+    }
+
+    .panel-content img {
+        height: 120px;
+    }
+
+    .panel-content h2 {
+        font-size: 20px;
+    }
+}
+
+/* Landscape Mode Fix */
+@media (max-height: 500px) and (orientation: landscape) {
+    #webcam-container {
+        width: 100px;
+        height: 75px;
+    }
+
+    .destinations-sidebar {
+        display: none;
+        /* Hide sidebar to see the map in landscape */
     }
 }
